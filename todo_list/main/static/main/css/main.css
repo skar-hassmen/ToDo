@@ -1,0 +1,58 @@
+body{
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.block__with__content {
+    width: 93%;
+    margin: 150px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.block__with__buttons {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.block__with__buttons > a {
+    text-decoration: none;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+	cursor: pointer;
+	border-style: none;
+	align-items: center;
+	border-radius: 20px;
+	box-shadow: 0px 0px 1px 1px #c8c8c8;
+	min-width: 250px;
+	height: 50px;
+	margin: 20px 10px;
+}
+
+.btn > p {
+    font-size: 20px;
+	font-family: 'CenturyGothicBold';
+	font-weight: bold;
+}
+
+.btn:hover {
+	background: #c8c8c8;
+}
+
+.block__login {
+    background: white;
+    color: #404040;
+}
+
+.block__register {
+    background: #404040;
+    color: white;
+}

@@ -1,0 +1,36 @@
+{% extends "personal_area/main_account.html" %}
+{% load static %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'personal_area/css/actions_task.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="content__block">
+        <div class="centre__block">
+            <div class="title__page">
+                <p>{{ title }}</p>
+            </div>
+            <form class="block__with__form" method="post">
+                <div class="form__block">
+                    {% csrf_token %}
+
+                    {% for self_input in form %}
+                    <p>{{ self_input.label }}</p>
+                    <center>{{ self_input }}</center>
+                    {% endfor %}
+                    <div class="error__message">
+                        <p>{{ form.non_field_errors.0 }}</p>
+                    </div>
+                    <center><button class="btn" type="submit"><p>Отправить</p></button></center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

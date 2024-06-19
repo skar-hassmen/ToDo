@@ -1,0 +1,39 @@
+﻿{% extends "main/index.html" %}
+{% load static %}
+
+{% block title %}
+{{ Error }}
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static  'main/css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'users/css/users.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'personal_area/css/errorLogin.css' %}">
+{% endblock %}
+
+
+{% block intro %}
+<div class="title__page">
+	<p>{{ Error }}</p>
+</div>
+<div class="block__with__reg" method="post">
+	<div class="reg__block">
+		<p>{{ str0 }}</p><br>
+	</div>
+	<div class="reg__block">
+		<p>{{ str1 }}</p><br>
+	</div>
+	<div class="reg__block">
+		<p>{{ str2 }} {{ str3 }}</p><br>
+	</div>
+	<div class="intro__link">
+		<center>
+			<div class="btn">
+				<a href="{{ url_come_back }}">
+					<p>{{ come_back }}</p>
+				</a>
+			</div>
+		</center>
+	</div><br>
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+.content {
+	margin-top: 85px;
+	margin-bottom: 20px;
+}
+
+.content__block {
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.centre__block {
+    max-width: 600px;
+    margin: 10px auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.title__page {
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 2.5px solid #c8c8c8;
+}
+
+.title__page > p {
+	font-size: 26px;
+	font-family: 'CenturyGothicBold';
+	color: #0f4fa8;
+	margin: 0;
+}
+
+.form__block {
+	padding: 10px;
+}
+
+.form__block > p {
+	font-size: 20px;
+	font-family: 'CenturyGothicBold';
+	margin-top: 30px 0 0 0;
+	color: #404040;
+	text-align: center;
+}
+
+.form__data {
+	border-style: none;
+	padding-left: 10px;
+	font-size: 15px;
+	border-radius: 20px;
+	margin-bottom: 12px;
+	color: black;
+	box-shadow: 0px 0px 2px 2px #c8c8c8;
+	width: 270px;
+	min-height: 45px;
+	max-height: 50px;
+}
+
+.form__date {
+	background-color: white;
+    border-style: none;
+	padding-left: 10px;
+	font-size: 15px;
+	border-radius: 20px;
+	margin-bottom: 12px;
+	color: black;
+	box-shadow: 0px 0px 2px 2px #c8c8c8;
+	min-height: 45px;
+	max-height: 50px;
+	margin: 0 5px;
+	padding: 15px;
+}
+
+
+.width__field {
+	width: 170px;
+}
+
+.select__field {
+	background-color: white;
+	padding: 15px;
+}
+
+.form__area__text {
+	padding: 5px 10px;
+	width: 450px;
+    min-height: 60px;
+    max-height: 200px;
+    resize: none;
+}
+
+.form__data:focus {
+	outline: none;
+	border-radius: 20px;
+	box-shadow: 0px 0px 2px 2px #0f4fa8;
+}
+
+.error__message {
+	display: block;
+	max-width: 280px;
+	margin-bottom: 14px;
+	margin: 0 auto;
+}
+
+.error__message > p {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+	font-family: 'CenturyGothicBold';
+	color: #ff0066;
+}
+
+
+.btn {
+	cursor: pointer;
+	border-style: none;
+	color: white;
+	align-items: center;
+	font-weight: bold;
+	background: #404040;
+	border-radius: 20px;
+	box-shadow: 0px 0px 1px 1px #c8c8c8;
+	font-size: 22px;
+	font-family: 'CenturyGothicBold';
+	min-width: 250px;
+	height: 50px;
+	line-height: 50px;
+	margin: 10px 0;
+}
+
+.btn:hover {
+	background: #c8c8c8;
+}
+
+.btn > p {
+	font-weight: bold;
+	font-size: 18px;
+	font-family: 'CenturyGothicBold';
+	margin: 0;
+}

@@ -1,0 +1,27 @@
+﻿{% extends "main/index.html" %}
+{% load static %}
+
+
+{% block title %}
+Сброс пароля
+{% endblock %}
+
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static  'main/css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'users/css/users.css' %}">
+{% endblock %}
+
+
+{% block intro %}
+<div class="title__page">
+    <p>Сброс пароля</p>
+</div>
+<div class="instruction__text">
+    <h3>Пароль успешно обновлён!</h3>
+</div>
+<div class="intro__link">
+    <a class="link" href="{% url 'login' %}">Есть аккаунт? Авторизоваться!</a>
+</div>
+<br>
+{% endblock %}

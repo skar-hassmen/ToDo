@@ -1,0 +1,41 @@
+﻿{% extends "main/index.html" %}
+{% load static %}
+
+
+{% block title %}
+Вход в систему
+{% endblock %}
+
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static  'main/css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static  'users/css/users.css' %}">
+{% endblock %}
+
+{% block intro %}
+<div class="title__page">
+	<p>Авторизация</p>
+</div>
+<form class="block__with__reg" method="post">
+	<div class="reg__block">
+		{% csrf_token %}
+
+		{% for self_form in form %}
+		<p>{{ self_form.label }}</p>
+		<center>{{ self_form }}</center>
+		{% endfor %}
+		<div class="error__message">
+			<p>{{ form.non_field_errors.0 }}</p>
+		</div>
+
+		<center><button class="btn" type="submit" onclick="button"><p>Войти</p></button></center>
+
+		<div class="intro__link">
+			<a class="link" href="{% url 'register' %}">Нет аккаунта? Зарегистрироваться!</a>
+		</div>
+		<div class="intro__link">
+			<a class="link" href="{% url 'password_reset' %}">Забыли пароль?</a>
+		</div><br>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,145 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>
+		{% block title %}
+		{% endblock %}
+	</title>
+	{% block link %}
+	{% endblock %}
+	<link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'personal_area/css/main_account.css' %}">
+
+	<script>
+		$(window).onload(function () {
+			$('html, body').animate({ scrollTop: 0 });
+		});
+	</script>
+
+</head>
+	<body>
+		<header class="header">
+			<div class="container__header">
+				<div class="flex__header">
+					<a href="{% url 'profile' 'all' 'none' %}"><img class="header__logo" src="{% static 'main/img/logo.png' %}"></a>
+					<div class="flex__phone">
+						<div class="dropdown phone">
+							<div class="phone__menu">
+								<div class="burger"></div>
+								<div class="burger"></div>
+								<div class="burger"></div>
+							</div>
+
+							<div class="dropdown-content">
+								<ul>
+									<li class="{% if 'profile' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">Профиль</a></li>
+									<li class="{% if 'create_task' in request.path %}current__url{% endif %}"><a href="{% url 'create_task' %}">Создать задачу</a></li>
+									<li><a href="{% url 'logout' %}">Выйти</a></li>
+									{% if request.user.is_superuser %}
+									<li><a href="/admin">Админка</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+						<a href="{% url 'profile' 'all' 'none' %}"><img class="header__logo__mini" src="{% static 'personal_area/img/logo_mini.png' %}"></a>
+
+					</div>
+					<div class="main__menu">
+						<script>
+								var img1 = "{% static 'personal_area/img/back.png' %}"
+								var img2 = "{% static 'personal_area/img/front.png' %}"
+
+								function changeImage(src, id) {
+									document.getElementById(id).src = src;
+								}
+						</script>
+						
+						<div class="dropdown computer">
+							<div class="self__menu" onMouseOver="changeImage(img2, 'allow3')" onMouseOut="changeImage(img1, 'allow3')">
+								<h3>Сортировка</h3>
+								<img id="allow3" src="{% static 'personal_area/img/back.png' %}">
+						   </div>
+
+						   <div class="dropdown-content">
+							   <ul>
+								   <li class="{% if 'priority' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'priority' %}">По приоритету</a></li>
+								   <li class="{% if 'date' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'date' %}">По дедлайну</a></li>
+								   <li class="{% if 'none' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">По созданию</a></li>
+							   </ul>
+						   </div>
+					   </div>
+
+						<div class="dropdown computer">
+							 <div class="self__menu" onMouseOver="changeImage(img2, 'allow1')" onMouseOut="changeImage(img1, 'allow1')">
+								 <h3>Фильтр задач</h3>
+								 <img id="allow1" src="{% static 'personal_area/img/back.png' %}">
+							</div>
+
+							<div class="dropdown-content">
+								<ul>
+									<li class="{% if 'all' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">Все</a></li>
+									<li class="{% if 'not_done' not in request.path and 'done' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'done' 'none' %}">Выполненные</a></li>
+									<li class="{% if 'overdue' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'overdue' 'none' %}">Просроченные</a></li>
+									<li class="{% if 'not_done' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'not_done' 'none' %}">Невыполненные</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="dropdown computer">
+							 <div class="self__menu" onMouseOver="changeImage(img2, 'allow2')" onMouseOut="changeImage(img1, 'allow2')">
+								 <h3>Меню</h3>
+								 <img id="allow2" src="{% static 'personal_area/img/back.png' %}">
+							</div>
+
+							<div class="dropdown-content">
+								<ul>
+									<li class="{% if 'profile' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">Профиль</a></li>
+									<li class="{% if 'create_task' in request.path %}current__url{% endif %}"><a href="{% url 'create_task' %}">Создать задачу</a></li>
+									<li><a href="{% url 'logout' %}">Выйти</a></li>
+									{% if request.user.is_superuser %}
+									<li><a href="/admin">Админка</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+
+						<div class="dropdown">
+							<div class="phone__course">
+								<h2>С</h2>
+							</div>
+
+							<div class="dropdown-content width__for__dropdown">
+								<ul>
+									<li class="{% if 'priority' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'priority' %}">По приоритету</a></li>
+									<li class="{% if 'date' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'date' %}">По дедлайну</a></li>
+									<li class="{% if 'none' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">По созданию</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="dropdown">
+							<div class="phone__course">
+								<h2>Ф</h2>
+							</div>
+
+							<div class="dropdown-content width__for__dropdown">
+								<ul>
+									<li class="{% if 'all' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'all' 'none' %}">Все</a></li>
+									<li class="{% if 'not_done' not in request.path and 'done' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'done' 'none' %}">Выполненные</a></li>
+									<li class="{% if 'overdue' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'overdue' 'none' %}">Просроченные</a></li>
+									<li class="{% if 'not_done' in request.path %}current__url{% endif %}"><a href="{% url 'profile' 'not_done' 'none' %}">Невыполненные</a></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</header>
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>

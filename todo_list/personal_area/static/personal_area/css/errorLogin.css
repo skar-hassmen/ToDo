@@ -1,0 +1,35 @@
+.reg__block {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 2.5px solid #c8c8c8;
+	border-radius: 0;
+}
+
+.reg__block > p {
+	margin: 30px 10px;
+}
+
+.intro__link {
+	font-size: 13px;
+	padding-top: 10px;
+	text-align: center;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 400px;
+	padding: 0 2px;
+}
+
+
+.btn > a {
+	text-decoration: none;
+}
+
+.btn > a > p {
+    margin: 0;
+    color: white;
+}

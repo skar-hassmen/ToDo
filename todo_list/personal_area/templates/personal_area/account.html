@@ -1,0 +1,207 @@
+{% extends "personal_area/main_account.html" %}
+{% load static %}
+
+{% block title %}
+	Личный кабинет
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{% static 'personal_area/css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="content__block">
+        <div class="centre__block">
+            <div class="title__page">
+                <div class="title__blocks blue">
+                    <p>Всего задач: {{ all_cnt }}</p>
+                </div>
+                <div class="title__blocks green">
+                    <p>Выполнено: {{ done_cnt }}</p>
+                </div>
+                <div class="title__blocks orange">
+                    <p>Осталось: {{ not_done_cnt }}</p>
+                </div>
+                <div class="title__blocks red">
+                    <p>Просрочено: {{ overdue_cnt }}</p>
+                </div>
+			</div>
+            
+            <div class="phone__task">
+            {% for task in tasks %}
+                <div class="block__task {% if task.status == 1 %} done__task {% endif %}" onclick="changeDisplay('allow_task_phone{{ forloop.counter }}', 'buttons_p{{ forloop.counter }}')">
+                    <div class="title__task" title="Красным помечаются просроченные задачи!">
+                        {% if task.status == 1 %}
+                        <ul><li><h3 class="done__text"><i>{{ task.title }}</i></h3><h3 class="done__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                        {% elif task.status == 2 %}
+                        <ul><li><h3 class="title__task__text overdue__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text overdue__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                        {% else %}
+                        <ul><li><h3 class="title__task__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                        {% endif %}
+                        <img id="allow_task_phone{{ forloop.counter }}i" src="{% static 'personal_area/img/back.png' %}">
+                    </div>
+                    <div class="description__task" id="allow_task_phone{{ forloop.counter }}">
+                        {% if task.status == 1 %}
+                        <p class="done__text">{{ task.description }}</p>
+                        {% else %}
+                        <p>{{ task.description }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="date__task">
+                        {% if task.status == 1 %}
+                        <h3 class="done__text">Дедлайн:</h3>
+                        <h3 class="done__text">{{ task.date_deadline }}</h3>
+                        {% else %}
+                        <h3>Дедлайн:</h3>
+                        <h3>{{ task.date_deadline }}</h3>
+                        {% endif %}
+                    </div>
+                    <div class="block__with__buttons__task" id="buttons_p{{ forloop.counter }}">
+                        <a href="{% url 'done_task' task.id %}" onclick="alertMessage('Задача успешно выполнена!')">
+                            <div class="button__task button__left">
+                                <img src="{% static 'personal_area/img/done.png' %}">
+                            </div>
+                        </a>
+                        <a href="{% url 'edit_task' task.id %}">
+                            <div class="button__task">
+                                <img src="{% static 'personal_area/img/edit.png' %}">
+                            </div>
+                        </a>
+                        <a href="{% url 'delete_task' task.id %}" onclick="alertMessage('Задача успешно удалена!')">
+                            <div class="button__task button__right">
+                                <img src="{% static 'personal_area/img/delete.png' %}">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class="block__flex__task">
+                <div class="columns">
+                    {% for task in tasks %}
+                    {% if forloop.counter|divisibleby:"2" == 0 %}
+                        <div class="block__task {% if task.status == 1 %} done__task {% endif %}">
+                            <div class="title__task" onclick="changeDisplay('allow_task{{ forloop.counter }}', 'buttons{{ forloop.counter }}')" title="Красным помечаются просроченные задачи!">
+                                {% if task.status == 1 %}
+                                <ul><li><h3 class="done__text"><i>{{ task.title }}</i></h3><h3 class="done__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% elif task.status == 2 %}
+                                <ul><li><h3 class="title__task__text overdue__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text overdue__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% else %}
+                                <ul><li><h3 class="title__task__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% endif %}
+                                <img id="allow_task{{ forloop.counter }}i" src="{% static 'personal_area/img/back.png' %}">
+                            </div>
+                            <div class="description__task" id="allow_task{{ forloop.counter }}">
+                                {% if task.status == 1 %}
+                                <p class="done__text">{{ task.description }}</p>
+                                {% else %}
+                                <p>{{ task.description }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="date__task">
+                                {% if task.status == 1 %}
+                                <h3 class="done__text">Дедлайн:</h3>
+                                <h3 class="done__text">{{ task.date_deadline }}</h3>
+                                {% else %}
+                                <h3>Дедлайн:</h3>
+                                <h3>{{ task.date_deadline }}</h3>
+                                {% endif %}
+                            </div>
+                            <div class="block__with__buttons__task" id="buttons{{ forloop.counter }}">
+                                <a href="{% url 'done_task' task.id %}" onclick="alertMessage('Задача успешно выполнена!')">
+                                    <div class="button__task button__left">
+                                        <img src="{% static 'personal_area/img/done.png' %}">
+                                    </div>
+                                </a>
+                                <a href="{% url 'edit_task' task.id %}">
+                                    <div class="button__task">
+                                        <img src="{% static 'personal_area/img/edit.png' %}">
+                                    </div>
+                                </a>
+                                <a href="{% url 'delete_task' task.id %}" onclick="alertMessage('Задача успешно удалена!')">
+                                    <div class="button__task button__right">
+                                        <img src="{% static 'personal_area/img/delete.png' %}">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="columns">
+                    {% for task in tasks %}
+                    {% if forloop.counter|divisibleby:"2" == 1 %}
+                        <div class="block__task {% if task.status == 1 %} done__task {% endif %}">
+                            <div class="title__task" onclick="changeDisplay('allow_task{{ forloop.counter }}', 'buttons{{ forloop.counter }}')" title="Красным помечаются просроченные задачи!">
+                                {% if task.status == 1 %}
+                                <ul><li><h3 class="done__text"><i>{{ task.title }}</i></h3><h3 style="font-size: 14px;" class="done__text">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% elif task.status == 2 %}
+                                <ul><li><h3 class="title__task__text overdue__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text overdue__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% else %}
+                                <ul><li><h3 class="title__task__text"><i>{{ task.title }}</i></h3><h3 class="title__task__text" style="font-size: 14px;">[Приоритет: <u>{{ task.priority }}]</u></h3></li></ul>
+                                {% endif %}
+                                <img id="allow_task{{ forloop.counter }}i" src="{% static 'personal_area/img/back.png' %}">
+                            </div>
+                            <div class="description__task" id="allow_task{{ forloop.counter }}">
+                                {% if task.status == 1 %}
+                                <p class="done__text">{{ task.description }}</p>
+                                {% else %}
+                                <p>{{ task.description }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="date__task">
+                                {% if task.status == 1 %}
+                                <h3 class="done__text">Дедлайн:</h3>
+                                <h3 class="done__text">{{ task.date_deadline }}</h3>
+                                {% else %}
+                                <h3>Дедлайн:</h3>
+                                <h3>{{ task.date_deadline }}</h3>
+                                {% endif %}
+                            </div>
+                            <div class="block__with__buttons__task" id="buttons{{ forloop.counter }}">
+                                <a href="{% url 'done_task' task.id %}" onclick="alertMessage('Задача успешно выполнена!')">
+                                    <div class="button__task button__left">
+                                        <img src="{% static 'personal_area/img/done.png' %}">
+                                    </div>
+                                </a>
+                                <a href="{% url 'edit_task' task.id %}">
+                                    <div class="button__task">
+                                        <img src="{% static 'personal_area/img/edit.png' %}">
+                                    </div>
+                                </a>
+                                <a href="{% url 'delete_task' task.id %}" onclick="alertMessage('Задача успешно удалена!')">
+                                    <div class="button__task button__right">
+                                        <img src="{% static 'personal_area/img/delete.png' %}">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <script>
+                function alertMessage(message) {
+                    alert(message);
+                }
+
+                function changeDisplay(id1, id2) {
+                    var display = 'flex', src = img2;
+                    var element1 = document.getElementById(id1), element2 = document.getElementById(id2);;
+                    if (element1.style.display == 'flex') {
+                        display = 'none';
+                        src = img1;
+                    }
+                    changeImage(src, id1 + "i");
+                    element1.style.display = display;
+                    element2.style.display = display;
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
